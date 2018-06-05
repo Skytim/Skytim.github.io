@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+
+    
+
+    
+
+    <title>在 2018年，要選哪一個前端框架? ReactJS vs Angular vs Vue.js | Tim&#39;s Note</title>
+    <meta name="author" content="Tim Tsai" />
+    <meta name="version" content="1.0.0" />
+    <meta name="keywords" content="" />
+    <meta name="description" content="Javascript 框架進步的非常訊速，我們可由Angurlar、ReactJS以及Vue.js的更新速度看出，除此之外，透過Google Trend，我們可以從下表看到 ReactJS,Angular6 以及Vue.js在這5年內增長，藍色、紅色、黃色分別代表著ReactJS, Angular 以及Vue.js
+
+  trends.embed.renderExploreWidget(&#34;TIMESERIES&#34;, {&#34;comparisonItem&#34;:[{&#34;keyword&#34;:&#34;/m/0j45p7w" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    <meta name="baidu-site-verification" content="F0CXvmUgA9" />
+
+    
+    
+    <link rel="icon" href="/favicon.png">
+    
+
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+    <div class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+
+    <nav class="nav-inner">
+
+        
+        
+        <li class="nav-item">
+            <a class="nav-link" href="/">Home</a>
+        </li>
+        
+        
+        
+        <li class="nav-item">
+            <a class="nav-link" href="/categories/front-end">FrontEnd</a>
+        </li>
+        
+        
+        
+        <li class="nav-item">
+            <a class="nav-link" href="/categories/back-end">BackEnd</a>
+        </li>
+        
+        
+        
+        <li class="nav-item nav-item-tag">
+            <a id="nav-tag" class="nav-link" href="#">Tags</a>
+            <div id="nav-tags" class="nav-tag-wrap">
+                <i class="nav-tag-arrow"></i>
+                
+  <div class="widget-wrap">
+    <h3 class="widget-title">
+        <i class="icon-tag vm"></i>
+        <span class="vm">Tags</span>
+    </h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Angular/">Angular</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue-js/">Vue.js</a></li></ul>
+    </div>
+  </div>
+
+
+            </div>
+        </li>
+        
+        
+        
+        <li class="nav-item">
+            <a class="nav-link" href="/archives">Archives</a>
+        </li>
+        
+        
+        
+
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit"><i class="icon-search-stroke"></i></button><input type="hidden" name="sitesearch" value="https://skytim.github.io"></form>
+
+        
+        
+        
+        
+
+        
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Angular"><span class="toc-number">1.</span> <span class="toc-text">Angular</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#優點"><span class="toc-number">1.1.</span> <span class="toc-text">優點</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#缺點"><span class="toc-number">1.2.</span> <span class="toc-text">缺點</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ReactJS"><span class="toc-number">2.</span> <span class="toc-text">ReactJS</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#優點-1"><span class="toc-number">2.1.</span> <span class="toc-text">優點</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#缺點-1"><span class="toc-number">2.2.</span> <span class="toc-text">缺點</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Vue-js"><span class="toc-number">3.</span> <span class="toc-text">Vue.js</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#優點-2"><span class="toc-number">3.1.</span> <span class="toc-text">優點</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#缺點-2"><span class="toc-number">3.2.</span> <span class="toc-text">缺點</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#結論"><span class="toc-number">4.</span> <span class="toc-text">結論</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#參考"><span class="toc-number">5.</span> <span class="toc-text">參考</span></a></li></ol>
+        
+    </div>
+</aside>
+
+</header>
+
+        <div id="content" class="content"><article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            在 2018年，要選哪一個前端框架? ReactJS vs Angular vs Vue.js
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="/2018/06/03/ReactJS-vs-Angular-vs-Vue-js-—-What-to-choose-in-2018/">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-06-03T06:36:03.000Z" itemprop="datePublished">2018-06-03</time>
+</a>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/Angular/">Angular</a>, <a class="article-tag-link" href="/tags/Javascript/">Javascript</a>, <a class="article-tag-link" href="/tags/React/">React</a>, <a class="article-tag-link" href="/tags/Vue-js/">Vue.js</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <p>Javascript 框架進步的非常訊速，我們可由Angurlar、ReactJS以及Vue.js的更新速度看出，除此之外，透過Google Trend，<br>我們可以從下表看到 ReactJS,Angular6 以及Vue.js在這5年內增長，藍色、紅色、黃色分別代表著<br>ReactJS, Angular 以及Vue.js</p>
+<a id="more"></a>
+<script type="text/javascript" src="https://ssl.gstatic.com/trends_nrtr/1435_RC11/embed_loader.js"></script> <script type="text/javascript"> trends.embed.renderExploreWidget("TIMESERIES", {"comparisonItem":[{"keyword":"/m/0j45p7w","geo":"","time":"today 5-y"},{"keyword":"React","geo":"","time":"today 5-y"},{"keyword":"Vue.js","geo":"","time":"today 5-y"}],"category":0,"property":""}, {"exploreQuery":"date=today%205-y&q=%2Fm%2F0j45p7w,React,Vue.js","guestPath":"https://trends.google.com.tw:443/trends/embed/"}); </script>
+
+<p>由上表可以看出說2013前，Angular與ReactJS的差距不會很多，直到 2016年後差距才逐漸變大</p>
+<p>再來，我們可以從<a href="https://mit.jobs/" target="_blank" rel="noopener">mit.jobs</a>來看，目前工作機會最多的是React(共137個)，再來是Angular(63個)，最後才是Vue(45個)。</p>
+<p>接下來，我將以不同框架的優缺點來分析，可以幫助你決定到底要使用哪一種的框架。</p>
+<h1 id="Angular"><a href="#Angular" class="headerlink" title="Angular"></a>Angular</h1><p>Angular是一個強大的前端 MVVM 開發平台，並由Google維護。它可以用來撰寫出強大的前端應用。</p>
+<h2 id="優點"><a href="#優點" class="headerlink" title="優點"></a>優點</h2><p>1.由Google維護並定時更新新功能，像是近期更新的功能像是RxJS，且有較快的編譯速度</p>
+<p>2.詳細的官方文件，但也需要一定的Coding知識</p>
+<p>3.容易實作雙向繫結(Two-Way Binding)，可為應用程序實現單一行為，進而將可能的錯誤風險降到最低。</p>
+<p>4.MVVM(Model-View-ViewModel)讓開發者在同一支程式中可以專注於不同的部分開發</p>
+<p>5.相依注入讓不同的Components可以分離</p>
+<p>6.強約束性的框架。它至少可以讓太爛的程序都沒法上線。如果配合Code Review 等管理實踐，那麼可以讓即使是剛畢業的學生也能達到一定的代碼質量。<br>如果在組內推廣，那麼你可能會減少很多糟心事（前提是你能Hold 住）。</p>
+<p>7.擁有強大的功能如Routing、Service等功能</p>
+<h2 id="缺點"><a href="#缺點" class="headerlink" title="缺點"></a>缺點</h2><p>1.個強約束性的框架，沒錯，這既是優點也是缺點，所以你得能認同它提供的約束。一般的程序你寫爛了也能跑，在Angular的框架下你寫爛了可能都無法編譯通過。<br>所以，除非你已經有了良好的開發習慣或者願意以此為契機改進自己的開發習慣，否則你會覺得處處礙手。</p>
+<p>2.雖然官方指定使用 Typescript 降低其複雜度，但也代表需要 Typescript 的基礎知識，對於寫過C#/Java可能會覺得這不就是翻版Java/C# 嗎？<br>但如果沒寫過，你就要補一些課才能用，不像es5，新手最多看兩個小時就能寫。</p>
+<p>3.升級版本問題，即使官方提供了版本升級時的<a href="https://update.angular.io/" target="_blank" rel="noopener">相關步驟</a>，其升級的複雜度仍是最高的</p>
+<p>4.擁有強大的功能也是雙面刃，除了相較於其他前端過於肥大外，有時開發者其實不需要那麼多強大的功能(甚至不必要)</p>
+<h1 id="ReactJS"><a href="#ReactJS" class="headerlink" title="ReactJS"></a>ReactJS</h1><p>ReactJS是一個專注於View的Library，由Facebook維護，他最主要使用在建立一個大型Web應用且該應用經常需要更動大量資料</p>
+<h2 id="優點-1"><a href="#優點-1" class="headerlink" title="優點"></a>優點</h2><p>1.相較於Angular容易上手，基本語法類似於Html，只要複習Html即可開始撰寫，不像Angular需要有Typescript的基礎知識</p>
+<p>2.ReactJs 只負責「View」層，容易維護</p>
+<p>4.工作機會多</p>
+<p>5.透過Virtual DOM 更新DOM，更新DOM的速度快</p>
+<p>6.整合ES6</p>
+<p>7.Facebook維護，經歷4年有完整的生態系</p>
+<p>8.升級相對容易</p>
+<h2 id="缺點-1"><a href="#缺點-1" class="headerlink" title="缺點"></a>缺點</h2><p>1.Angular 用來建構強大前端應用的Javascript Framework</p>
+<p>2.ReactJs 框架只負責「View」層，容易維護</p>
+<p>3.</p>
+<h1 id="Vue-js"><a href="#Vue-js" class="headerlink" title="Vue.js"></a>Vue.js</h1><p>Vue.js是一個JS framework，起來音似 View，這也是作者取名的用意，Vue.js 專注於 View</p>
+<h2 id="優點-2"><a href="#優點-2" class="headerlink" title="優點"></a>優點</h2><p>1.簡單：官方文件很清楚，跟Angular 有需多與Angular相似的Binding方式但更簡單易學</p>
+<p>2.快速：異步批處理方式更新DOM</p>
+<p>3.漸進式框架，可以只單引用libary當作套件使用，也可使用cli工具快速建立單一網頁應用(SPA)</p>
+<p>4.相當小，約20KB</p>
+<h2 id="缺點-2"><a href="#缺點-2" class="headerlink" title="缺點"></a>缺點</h2><p>1.缺少資源。Vue相對於其他兩個框架仍屬小眾，而且開源社群除華人地區外，相對於其他框架也較少數</p>
+<p>2.工作機會少</p>
+<p>3.不支援IE8</p>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>總結來說，每一個框架各有其優缺點，不一定某框架的優點就是其他框架的缺點，在我的團隊中的專案，<br>有早期的AngularJS，也有Angular4，甚至還有傳統的MVC架構，要使用哪一種框架，則是取決於該專案的大小<br>以及其功能複雜程度。</p>
+<h1 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h1><p>1.<a href="https://medium.com/@TechMagic/reactjs-vs-angular5-vs-vue-js-what-to-choose-in-2018-b91e028fa91d" target="_blank" rel="noopener">ReactJS vs Angular5 vs Vue.js — What to choose in 2018?</a><br>2.<a href="https://www.pixpo.net/technology/0IC9wu93.html" target="_blank" rel="noopener">淺談 MVVM 設計模式優缺點</a><br>3.<a href="https://www.zhihu.com/question/266823404" target="_blank" rel="noopener">在2018 年的時間點，Angular、React、Vue三選一，你更看好誰？為什麼？</a></p>
+
+        
+    </section>
+</article>
+
+
+
+<div class="comments">
+    <div id="disqus_thread">
+        <p class="comment-tips">国内查看评论需要代理~</p>
+    </div>
+    <script>
+    window.disqus_config = function () {
+        this.language = 'zh';
+        this.page.url = 'https://skytim.github.io/2018/06/03/ReactJS-vs-Angular-vs-Vue-js-—-What-to-choose-in-2018/';
+        this.page.title = '在 2018年，要選哪一個前端框架? ReactJS vs Angular vs Vue.js';
+        this.page.identifier = '2018/06/03/ReactJS-vs-Angular-vs-Vue-js-—-What-to-choose-in-2018/';
+    };
+    (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+        s.src = 'https://name.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+
+</div>
+        <footer class="footer">
+    Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>, Theme by <a href="https://github.com/sanonz/hexo-theme-concise" target="_blank">Concise</a>
+</footer>
+
+<script type="text/javascript" src="//s13.cnzz.com/z_stat.php?id=1234567890&amp;web_id=1234567890"></script>
+
+
+    </div>
+
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/1.9.0/jquery.min.js"></script>
+    
+    <script type="text/javascript" src="/js/scrollspy.min.js"></script>
+    
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');console.log(nodes.navTags.attr('class'))
+            })/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+
+            
+            $(document.body).scrollspy({target: '#aside-inner'});
+            
+        });
+    </script>
+
+</body>
+</html>
