@@ -1,0 +1,39 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE } from '../consts';
+---
+
+<BaseLayout title="關於" description="關於 Tim Tsai 與這個部落格。">
+	<article class="container prose">
+		<header class="page-header">
+			<h1>關於</h1>
+		</header>
+
+		<p>
+			你好，我是 <strong>Tim Tsai（蔡宇翔）</strong>，住在台北，職稱是軟體工程師，副標大概是「會修 bug，也會製造需要週五晚上修的
+			bug」。2018 年我曾在此站發過文，後來忙到連 <code>git push</code> 都覺得奢侈；現在把舊 HTML 埋進歷史，用 Astro 重開一局。
+		</p>
+
+		<p>
+			<!-- 以下段落可自行修改 -->
+			這十來年我主要在 <strong>C# / ASP.NET</strong> 後端、<strong>Angular</strong> 前端和
+			<strong>Java</strong> 專案裡打滾。技能樹很傳統，但心態很開放：AI 能幫我寫樣板程式，我就多留一點腦容量給「這段到底為什麼要這樣
+			設計」。這裡會記我踩過的坑、查過的文件，以及那些本來想寫在 Slack 最後決定還是寫成文章的 rant。
+		</p>
+
+		<h2>連結</h2>
+		<ul>
+			<li>
+				GitHub：<a href={SITE.github} rel="me noopener noreferrer" target="_blank">{SITE.github}</a>
+			</li>
+			<li>
+				LinkedIn：<a href={SITE.linkedin} rel="noopener noreferrer" target="_blank">{SITE.linkedin}</a>
+			</li>
+		</ul>
+
+		<h2>關於這個網站</h2>
+		<p>
+			本站以 <a href="https://astro.build/">Astro</a> 建置，文章以 Markdown 撰寫並透過 GitHub Actions 部署至 GitHub Pages。若你在 README 看到撰寫新文章的說明，歡迎直接 fork 或參考設定。
+		</p>
+	</article>
+</BaseLayout>

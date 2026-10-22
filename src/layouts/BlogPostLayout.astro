@@ -1,0 +1,67 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import type { BlogPost } from '../utils/posts';
+import { formatDate } from '../utils/posts';
+
+interface Props {
+	post: BlogPost;
+	readingMinutesLabel: string;
+}
+
+const { post, readingMinutesLabel } = Astro.props;
+const { title, description, pubDate, updatedDate, tags } = post.data;
+---
+
+<BaseLayout
+	title={title}
+	description={description}
+	type="article"
+	publishedTime={pubDate.toISOString()}
+	updatedTime={(updatedDate ?? pubDate).toISOString()}
+	tags={tags}
+>
+	<article class="container prose">
+		<header class="page-header">
+			<p class="post-meta">
+				<time datetime={pubDate.toISOString()}>{formatDate(pubDate)}</time>
+				<span>{readingMinutesLabel}</span>
+				{
+					updatedDate && (
+						<span>
+							更新：
+							<time datetime={updatedDate.toISOString()}>{formatDate(updatedDate)}</time>
+						</span>
+					)
+				}
+			</p>
+			<h1>{title}</h1>
+			<p>{description}</p>
+			{
+				tags.length > 0 && (
+					<ul class="tag-list">
+						{tags.map((tag) => (
+							<li>
+								<a class="tag" href={`/tags/${tag}/`}>
+									{tag}
+								</a>
+							</li>
+						))}
+					</ul>
+				)
+			}
+		</header>
+		<slot />
+		<footer class="post-footer">
+			<a href="/blog/">← 返回文章列表</a>
+		</footer>
+	</article>
+</BaseLayout>
+
+<style>
+	.post-footer {
+		margin-top: 3rem;
+		padding-top: 1.5rem;
+		border-top: 1px solid var(--border);
+		font-size: 0.9375rem;
+	}
+</style>
