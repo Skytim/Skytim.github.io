@@ -1,0 +1,11 @@
+---
+description: 本站以台灣繁體中文撰寫（文章、UI、說明文字）
+alwaysApply: true
+---
+
+# 台灣繁體中文寫作
+
+- 使用**台灣繁體中文**。不要用中國大陸簡體用詞或譯法（例如：軟體／資訊／影片／預設／品質，而非软件／信息／视频／默认／质量）。
+- 技術文採**台灣工程師口語**：短句、中英混用 OK（null、Optional、await、例外、回傳、呼叫端）。
+- 避免翻譯腔或 AI 書面語（例如：萬靈丹、語意、可測量的收益、邊跑邊改世界、空值路徑、設計意圖）。
+- 部落格語氣對齊 `src/content/blog/java-optional-pitfalls.md`、`src/content/blog/java-stream-pitfalls.md`：直接講後果與做法，少文謅謅比喻。

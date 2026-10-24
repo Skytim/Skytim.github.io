@@ -1,3 +1,7 @@
+## Language
+
+本站文章、UI 與說明文字使用**台灣繁體中文**（工程師口語、中英混用可）。細節見 `.cursor/rules/zh-tw-writing.mdc`。
+
 ## Development
 
 When starting the dev server, use background mode:
