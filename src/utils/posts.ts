@@ -39,3 +39,24 @@ export function collectTags(posts: BlogPost[]): Map<string, number> {
 	}
 	return new Map([...tagCounts.entries()].sort(([a], [b]) => a.localeCompare(b, 'zh-TW')));
 }
+
+const TAG_SLUG_OVERRIDES: Record<string, string> = {
+	'C#': 'csharp',
+	'.NET': 'dotnet',
+	'F#': 'fsharp',
+	'C++': 'cpp',
+};
+
+export function tagSlug(tag: string): string {
+	const override = TAG_SLUG_OVERRIDES[tag];
+	if (override) return override;
+	return tag
+		.trim()
+		.toLowerCase()
+		.replace(/[\s/#?%]+/g, '-')
+		.replace(/^[.-]+|-+$/g, '');
+}
+
+export function tagUrl(tag: string): string {
+	return `/tags/${tagSlug(tag)}/`;
+}

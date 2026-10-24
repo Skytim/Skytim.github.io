@@ -1,13 +1,13 @@
 ---
 import PostCard from '../../components/PostCard.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { collectTags, getPublishedPosts } from '../../utils/posts';
+import { collectTags, getPublishedPosts, tagSlug } from '../../utils/posts';
 
 export async function getStaticPaths() {
 	const posts = await getPublishedPosts();
 	const tags = collectTags(posts);
 	return [...tags.keys()].map((tag) => ({
-		params: { tag },
+		params: { tag: tagSlug(tag) },
 		props: {
 			tag,
 			posts: posts.filter((post) => post.data.tags.includes(tag)),

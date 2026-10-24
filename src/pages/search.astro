@@ -1,0 +1,40 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="搜尋" description="搜尋 Tim Tsai 技術部落格的文章。">
+	<div class="container">
+		<header class="page-header">
+			<h1>搜尋</h1>
+		</header>
+		<div id="search"></div>
+		<noscript><p>搜尋功能需要啟用 JavaScript。</p></noscript>
+	</div>
+	<link href="/pagefind/pagefind-ui.css" rel="stylesheet" />
+	<script is:inline src="/pagefind/pagefind-ui.js"></script>
+	<script is:inline>
+		window.addEventListener('DOMContentLoaded', () => {
+			if (!window.PagefindUI) {
+				document.getElementById('search').textContent = '搜尋索引只在 build 後產生（npm run build && npm run preview）。';
+				return;
+			}
+			new PagefindUI({
+				element: '#search',
+				showSubResults: true,
+				showImages: false,
+				translations: { placeholder: '輸入關鍵字…', zero_results: '找不到與「[SEARCH_TERM]」相關的文章' },
+			});
+		});
+	</script>
+</BaseLayout>
+
+<style is:global>
+	#search {
+		--pagefind-ui-primary: var(--accent);
+		--pagefind-ui-text: var(--text);
+		--pagefind-ui-background: var(--bg-elevated);
+		--pagefind-ui-border: var(--border);
+		--pagefind-ui-tag: var(--code-bg);
+		--pagefind-ui-font: var(--font-sans);
+	}
+</style>

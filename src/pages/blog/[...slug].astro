@@ -5,17 +5,24 @@ import { getPublishedPosts, getReadingTimeLabel, postSlug } from '../../utils/po
 
 export async function getStaticPaths() {
 	const posts = await getPublishedPosts();
-	return posts.map((post) => ({
+	return posts.map((post, index) => ({
 		params: { slug: postSlug(post) },
-		props: { post },
+		// posts 依日期新到舊排序：index - 1 是較新的一篇，index + 1 是較舊的一篇
+		props: { post, newer: posts[index - 1], older: posts[index + 1] },
 	}));
 }
 
-const { post } = Astro.props;
-const { Content } = await render(post);
+const { post, newer, older } = Astro.props;
+const { Content, headings } = await render(post);
 const readingMinutesLabel = getReadingTimeLabel(post.body ?? '');
 ---
 
-<BlogPostLayout post={post} readingMinutesLabel={readingMinutesLabel}>
+<BlogPostLayout
+	post={post}
+	readingMinutesLabel={readingMinutesLabel}
+	headings={headings}
+	newer={newer}
+	older={older}
+>
 	<Content />
 </BlogPostLayout>
