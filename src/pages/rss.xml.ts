@@ -1,7 +1,11 @@
 import rss from '@astrojs/rss';
 import type { APIContext } from 'astro';
+import MarkdownIt from 'markdown-it';
+import sanitizeHtml from 'sanitize-html';
 import { SITE } from '../consts';
 import { getPublishedPosts, postUrl } from '../utils/posts';
+
+const parser = new MarkdownIt();
 
 export async function GET(context: APIContext) {
 	const posts = await getPublishedPosts();
@@ -20,6 +24,9 @@ export async function GET(context: APIContext) {
 			description: post.data.description,
 			link: postUrl(post),
 			categories: post.data.tags,
+			content: sanitizeHtml(parser.render(post.body ?? ''), {
+				allowedTags: sanitizeHtml.defaults.allowedTags.concat(['img']),
+			}),
 		})),
 	});
 }

@@ -1,14 +1,19 @@
 ---
+import type { MarkdownHeading } from 'astro';
 import BaseLayout from './BaseLayout.astro';
 import type { BlogPost } from '../utils/posts';
-import { formatDate } from '../utils/posts';
+import { formatDate, postUrl, tagUrl } from '../utils/posts';
 
 interface Props {
 	post: BlogPost;
 	readingMinutesLabel: string;
+	headings?: MarkdownHeading[];
+	newer?: BlogPost;
+	older?: BlogPost;
 }
 
-const { post, readingMinutesLabel } = Astro.props;
+const { post, readingMinutesLabel, headings = [], newer, older } = Astro.props;
+const tocHeadings = headings.filter(({ depth }) => depth === 2 || depth === 3);
 const { title, description, pubDate, updatedDate, tags } = post.data;
 ---
 
@@ -20,7 +25,7 @@ const { title, description, pubDate, updatedDate, tags } = post.data;
 	updatedTime={(updatedDate ?? pubDate).toISOString()}
 	tags={tags}
 >
-	<article class="container prose">
+	<article class="container prose" data-pagefind-body>
 		<header class="page-header">
 			<p class="post-meta">
 				<time datetime={pubDate.toISOString()}>{formatDate(pubDate)}</time>
@@ -41,7 +46,7 @@ const { title, description, pubDate, updatedDate, tags } = post.data;
 					<ul class="tag-list">
 						{tags.map((tag) => (
 							<li>
-								<a class="tag" href={`/tags/${tag}/`}>
+								<a class="tag" href={tagUrl(tag)}>
 									{tag}
 								</a>
 							</li>
@@ -50,14 +55,172 @@ const { title, description, pubDate, updatedDate, tags } = post.data;
 				)
 			}
 		</header>
+		{
+			tocHeadings.length >= 2 && (
+				<nav class="toc" aria-label="文章目錄">
+					<details open>
+						<summary>目錄</summary>
+						<ol>
+							{tocHeadings.map(({ depth, slug, text }) => (
+								<li class={depth === 3 ? 'toc-sub' : undefined}>
+									<a href={`#${slug}`}>{text}</a>
+								</li>
+							))}
+						</ol>
+					</details>
+				</nav>
+			)
+		}
 		<slot />
 		<footer class="post-footer">
+			{
+				(newer || older) && (
+					<nav class="post-nav" aria-label="上一篇與下一篇">
+						{older ? (
+							<a class="post-nav-link" href={postUrl(older)}>
+								<span>← 上一篇</span>
+								{older.data.title}
+							</a>
+						) : (
+							<span />
+						)}
+						{newer && (
+							<a class="post-nav-link post-nav-next" href={postUrl(newer)}>
+								<span>下一篇 →</span>
+								{newer.data.title}
+							</a>
+						)}
+					</nav>
+				)
+			}
 			<a href="/blog/">← 返回文章列表</a>
 		</footer>
 	</article>
 </BaseLayout>
 
+<script>
+	document.querySelectorAll<HTMLPreElement>('.prose pre').forEach((pre) => {
+		const button = document.createElement('button');
+		button.type = 'button';
+		button.className = 'copy-code';
+		button.textContent = '複製';
+		button.addEventListener('click', async () => {
+			try {
+				await navigator.clipboard.writeText(pre.querySelector('code')?.innerText ?? pre.innerText);
+				button.textContent = '已複製';
+			} catch {
+				button.textContent = '複製失敗';
+			}
+			setTimeout(() => (button.textContent = '複製'), 1500);
+		});
+		const wrapper = document.createElement('div');
+		wrapper.className = 'code-block';
+		pre.replaceWith(wrapper);
+		wrapper.append(pre, button);
+	});
+</script>
+
 <style>
+	.toc {
+		margin: 0 0 2rem;
+		padding: 0.75rem 1rem;
+		border: 1px solid var(--border);
+		border-radius: 0.5rem;
+		background: var(--bg-elevated);
+		font-size: 0.9375rem;
+	}
+
+	.toc summary {
+		cursor: pointer;
+		font-weight: 700;
+	}
+
+	.toc ol {
+		margin: 0.5rem 0 0;
+		padding-left: 1.25rem;
+	}
+
+	.toc .toc-sub {
+		margin-left: 1rem;
+		list-style: circle;
+	}
+
+	.toc a {
+		text-decoration: none;
+	}
+
+	.post-nav {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 1rem;
+		margin-bottom: 1.5rem;
+	}
+
+	.post-nav-link {
+		display: flex;
+		flex-direction: column;
+		gap: 0.25rem;
+		padding: 0.75rem 1rem;
+		border: 1px solid var(--border);
+		border-radius: 0.5rem;
+		text-decoration: none;
+		line-height: 1.5;
+	}
+
+	.post-nav-link:hover {
+		border-color: var(--accent);
+	}
+
+	.post-nav-link span {
+		font-size: 0.8125rem;
+		color: var(--text-muted);
+	}
+
+	.post-nav-next {
+		grid-column: 2;
+		text-align: right;
+	}
+
+	@media (max-width: 640px) {
+		.post-nav {
+			grid-template-columns: 1fr;
+		}
+
+		.post-nav-next {
+			grid-column: 1;
+		}
+	}
+
+	:global(.code-block) {
+		position: relative;
+	}
+
+	:global(.copy-code) {
+		position: absolute;
+		top: 0.5rem;
+		right: 0.5rem;
+		padding: 0.2rem 0.6rem;
+		border: 1px solid var(--border);
+		border-radius: 0.375rem;
+		background: var(--bg-elevated);
+		color: var(--text-muted);
+		font-size: 0.75rem;
+		cursor: pointer;
+		opacity: 0;
+		transition: opacity 0.15s;
+	}
+
+	:global(.code-block:hover .copy-code),
+	:global(.copy-code:focus-visible) {
+		opacity: 1;
+	}
+
+	@media (hover: none) {
+		:global(.copy-code) {
+			opacity: 1;
+		}
+	}
+
 	.post-footer {
 		margin-top: 3rem;
 		padding-top: 1.5rem;
