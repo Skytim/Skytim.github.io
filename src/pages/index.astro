@@ -1,0 +1,55 @@
+---
+import PostCard from '../components/PostCard.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE } from '../consts';
+import { getPublishedPosts } from '../utils/posts';
+
+const posts = await getPublishedPosts();
+const recentPosts = posts.slice(0, 5);
+---
+
+<BaseLayout title={SITE.title} description={SITE.description}>
+	<div class="container">
+		<section class="hero">
+			<img class="hero-avatar" src="/avatar.jpg" width="112" height="112" alt="Tim Tsai 頭像" />
+			<div>
+				<h1>嗨，我是 Tim Tsai</h1>
+				<p>
+					台北的軟體工程師，工齡大概十年——夠資深可以教學，也夠資深會把
+					<code>NullReferenceException</code> 當成老朋友。日常在 C# / ASP.NET、Angular、Java
+					之間換線，近年則把 AI 當成「很會寫 boilerplate 的實習生」。這個部落格專門存放那些「下次一定記得」的筆記（以及真的忘記過的教訓）。
+				</p>
+				<p>
+					<a href="/about/">更多關於我 →</a>
+					{' · '}
+					<a href="/blog/">閱讀全部文章 →</a>
+				</p>
+			</div>
+		</section>
+
+		<section>
+			<h2 class="section-title">最新文章</h2>
+			{
+				recentPosts.length > 0 ? (
+					<ul class="post-list">
+						{recentPosts.map((post) => (
+							<li>
+								<PostCard post={post} />
+							</li>
+						))}
+					</ul>
+				) : (
+					<p>尚無文章，歡迎稍後再來。</p>
+				)
+			}
+		</section>
+	</div>
+</BaseLayout>
+
+<style>
+	h1 {
+		margin: 0 0 0.75rem;
+		font-size: clamp(1.75rem, 4vw, 2.35rem);
+		line-height: 1.25;
+	}
+</style>

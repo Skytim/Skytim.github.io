@@ -1,0 +1,29 @@
+---
+import PostCard from '../../components/PostCard.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getPublishedPosts } from '../../utils/posts';
+
+const posts = await getPublishedPosts();
+---
+
+<BaseLayout title="文章" description="Tim Tsai 技術部落格的全部文章。">
+	<div class="container">
+		<header class="page-header">
+			<h1>文章</h1>
+			<p>軟體開發、工具與學習筆記。</p>
+		</header>
+		{
+			posts.length > 0 ? (
+				<ul class="post-list">
+					{posts.map((post) => (
+						<li>
+							<PostCard post={post} />
+						</li>
+					))}
+				</ul>
+			) : (
+				<p>目前沒有已發布的文章。</p>
+			)
+		}
+	</div>
+</BaseLayout>
